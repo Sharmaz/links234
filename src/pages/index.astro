@@ -1,51 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-const cardList = [
-  {
-    title: 'Website',
-    href: 'https://ivanrobles.pro/',
-    body: ''
-  },
-  {
-    title: 'X',
-    href: 'https://x.com/elSharmaz',
-    body: ''
-  },
-  {
-    title: 'instagram',
-    href: 'https://www.instagram.com/elsharmaz',
-    body: ''
-  },
-];
-const profile = {
-  name: 'Ivan Robles',
-  bio: 'Frontend Developer, creating digital products and making elegant code.',
-  imgUrl: 'https://ugc.production.linktr.ee/27eeb666-69d6-48cc-b3da-984d3bec0c68_314741375-1380669049133753-4630453272631899756-n.jpeg?io=true&size=avatar-v3_0'
-};
 ---
 
 <Layout title="Links234">
   <main>
     <h1 class="text-gradient">Links234</h1>
-    <div class="profile-img">
-      <img src={profile.imgUrl} alt="profile image" srcset="" width="100px" height="100px"/>
-    </div>
-    <h2 class="profile-name">{profile.name}</h2>
-    <p class="bio">
-      {profile.bio}
-    </p>
-    <ul role="list" class="link-card-grid">
-      {
-        cardList.map((card) => (
-          <Card
-            href={card.href}
-            title={card.title}
-            body={card.body}
-          />
-        ))
-      }
-    </ul>
   </main>
 </Layout>
 
@@ -57,15 +16,6 @@ const profile = {
     color: white;
     font-size: 20px;
     line-height: 1.6;
-  }
-  .astro-a {
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    transform: translatex(-50%);
-    width: 220px;
-    height: auto;
-    z-index: -1;
   }
   h1 {
     font-size: 4rem;
@@ -80,43 +30,5 @@ const profile = {
     -webkit-text-fill-color: transparent;
     background-size: 400%;
     background-position: 0%;
-  }
-  .instructions {
-    margin-bottom: 2rem;
-    border: 1px solid rgba(var(--accent-light), 25%);
-    background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-    padding: 1.5rem;
-    border-radius: 8px;
-  }
-  .instructions code {
-    font-size: 0.8em;
-    font-weight: bold;
-    background: rgba(var(--accent-light), 12%);
-    color: rgb(var(--accent-light));
-    border-radius: 4px;
-    padding: 0.3em 0.4em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent-light));
-  }
-  .link-card-grid {
-    display: grid;
-    gap: 2rem;
-    padding: 0;
-  }
-  .profile-img {
-    display: flex;
-    justify-content: center;
-  }
-  .profile-img img {
-    border-radius: 50%;
-  }
-  .profile-name {
-    font-size: 20px;
-    text-align: center;
-  }
-  .bio {
-    font-size: 18px;
-    text-align: center;
   }
 </style>

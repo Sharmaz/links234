@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+export function getStaticPaths() {
+  const profiles = [
+    {
+      id: '1',
+      name: 'Ivan Robles',
+      bio: 'Frontend Developer, creating digital products and making elegant code.',
+      imgUrl: 'https://ugc.production.linktr.ee/27eeb666-69d6-48cc-b3da-984d3bec0c68_314741375-1380669049133753-4630453272631899756-n.jpeg?io=true&size=avatar-v3_0',
+      socialLinks: [
+        {
+          title: 'Website',
+          href: 'https://ivanrobles.pro/',
+          body: ''
+        },
+        {
+          title: 'X',
+          href: 'https://x.com/elSharmaz',
+          body: ''
+        },
+        {
+          title: 'instagram',
+          href: 'https://www.instagram.com/elsharmaz',
+          body: ''
+        },
+      ]
+    },
+    {
+      id: '2',
+      name: 'Jhon Connor',
+      bio: 'Leader of the resistance to defeat an empire of evil AI',
+      imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Edward_Furlong_2009.jpg',
+      socialLinks: [
+        {
+          title: 'Website',
+          href: 'https://ivanrobles.pro/',
+          body: ''
+        },
+        {
+          title: 'X',
+          href: 'https://x.com/elSharmaz',
+          body: ''
+        },
+        {
+          title: 'instagram',
+          href: 'https://www.instagram.com/elsharmaz',
+          body: ''
+        },
+      ]
+    },
+    {
+      id: '3',
+      name: 'Alex Murphy',
+      bio: 'Detroit police officer integrated into the cybernetic law enforcement.',
+      imgUrl: 'https://media.vandal.net/i/1280x720/10-2023/21/202310211150719_1.jpg.webp',
+      socialLinks: [
+        {
+          title: 'Website',
+          href: 'https://ivanrobles.pro/',
+          body: ''
+        },
+        {
+          title: 'X',
+          href: 'https://x.com/elSharmaz',
+          body: ''
+        },
+        {
+          title: 'instagram',
+          href: 'https://www.instagram.com/elsharmaz',
+          body: ''
+        },
+      ]
+    },
+  ];
+
+  return profiles.map(({id, name, bio, imgUrl, socialLinks}) => {
+    return {
+      params: { id },
+      props: { name, bio, imgUrl, socialLinks }
+    };
+  });
+}
+
+const { name, bio, imgUrl, socialLinks } = Astro.props;
+---
+<Layout title={name}>
+  <main>
+    <div class="profile-img">
+      <img src={imgUrl} alt="profile image" srcset="" width="100px" height="100px"/>
+    </div>
+    <h1 class="profile-name">{name}</h1>
+    <div class="bio-container">
+      <p class="bio">
+        {bio}
+      </p>
+    </div>
+    <ul role="list" class="link-card-grid">
+      {
+        socialLinks.map((card) => (
+          <Card
+            href={card.href}
+            title={card.title}
+            body={card.body}
+          />
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    max-width: 600px;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  .astro-a {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 220px;
+    height: auto;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .instructions code {
+    font-size: 0.8em;
+    font-weight: bold;
+    background: rgba(var(--accent-light), 12%);
+    color: rgb(var(--accent-light));
+    border-radius: 4px;
+    padding: 0.3em 0.4em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent-light));
+  }
+  .link-card-grid {
+    display: grid;
+    gap: 2rem;
+    padding: 0;
+  }
+  .profile-img {
+    display: flex;
+    justify-content: center;
+  }
+  .profile-img img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .profile-name {
+    font-size: 20px;
+    text-align: center;
+  }
+  .bio-container {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    text-align: center;
+    text-align: center;
+  }
+  .bio {
+    max-width: 500px;
+    margin-: 0;
+  }
+</style>
