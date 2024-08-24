@@ -24,7 +24,8 @@ export function getStaticPaths() {
           href: 'https://www.instagram.com/elsharmaz',
           body: ''
         },
-      ]
+      ],
+      theme: 'dracula'
     },
     {
       id: '2',
@@ -47,7 +48,8 @@ export function getStaticPaths() {
           href: 'https://www.instagram.com/elsharmaz',
           body: ''
         },
-      ]
+      ],
+      theme: 'nord'
     },
     {
       id: '3',
@@ -70,28 +72,29 @@ export function getStaticPaths() {
           href: 'https://www.instagram.com/elsharmaz',
           body: ''
         },
-      ]
+      ],
+      theme: 'vaporwave'
     },
   ];
 
-  return profiles.map(({id, name, bio, imgUrl, socialLinks}) => {
+  return profiles.map(({id, name, bio, imgUrl, socialLinks, theme}) => {
     return {
       params: { id },
-      props: { name, bio, imgUrl, socialLinks }
+      props: { name, bio, imgUrl, socialLinks, theme }
     };
   });
 }
 
-const { name, bio, imgUrl, socialLinks } = Astro.props;
+const { name, bio, imgUrl, socialLinks, theme } = Astro.props;
 ---
-<Layout title={name}>
+<Layout title={name} theme={theme}>
   <main>
     <div class="profile-img">
-      <img src={imgUrl} alt="profile image" srcset="" width="100px" height="100px"/>
+      <img class={`profile-pic profile-pic-${theme}`} src={imgUrl} alt="profile image" srcset="" width="100px" height="100px"/>
     </div>
-    <h1 class="profile-name">{name}</h1>
+    <h1 class={`profile-name profile-name-${theme}`}>{name}</h1>
     <div class="bio-container">
-      <p class="bio">
+      <p class={`bio bio-${theme}`}>
         {bio}
       </p>
     </div>
@@ -102,6 +105,7 @@ const { name, bio, imgUrl, socialLinks } = Astro.props;
             href={card.href}
             title={card.title}
             body={card.body}
+            theme={theme}
           />
         ))
       }
@@ -168,13 +172,30 @@ const { name, bio, imgUrl, socialLinks } = Astro.props;
     display: flex;
     justify-content: center;
   }
-  .profile-img img {
-    border-radius: 50%;
+  .profile-pic {
     object-fit: cover;
+  }
+  .profile-pic-dracula {
+    border-radius: 50%;
+  }
+  .profile-pic-nord {
+    border-radius: 5%;
+  }
+  .profile-pic-vaporwave {
+    border-radius: 50%;
   }
   .profile-name {
     font-size: 20px;
     text-align: center;
+  }
+  .profile-name-dracula {
+    color: #8BE9FD;
+  }
+  .profile-name-nord {
+    color: #88c0d0;
+  }
+  .profile-name-vaporwave {
+    color:  #03CAFC ;
   }
   .bio-container {
     display: flex;
@@ -186,5 +207,14 @@ const { name, bio, imgUrl, socialLinks } = Astro.props;
   .bio {
     max-width: 500px;
     margin-: 0;
+  }
+  .bio-dracula {
+    color: #50FA7B;
+  }
+  .bio-nord {
+    color: #ebcb8b;
+  }
+  .bio-vaporwave {
+    color:  #FFFB8D;
   }
 </style>
