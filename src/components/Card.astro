@@ -1,8 +1,8 @@
 ---
-const { href, title, body } = Astro.props;
+const { href, title, body, theme } = Astro.props;
 ---
 
-<li class="link-card">
+<li class={`link-card link-card-${theme}`}>
   <a href={href}>
     <h2>
       {title}
@@ -36,6 +36,23 @@ const { href, title, body } = Astro.props;
     background-color: #23262d;
     opacity: 0.8;
   }
+  .link-card-dracula {
+    background-color: #BD93F9;
+  }
+  .link-card-nord {
+    background-color: #81a1c1;
+    border-radius: 0;
+  }
+  .link-card-nord > a {
+    border-radius: 0;
+  }
+  .link-card-vaporwave {
+    background-color: #B768FC ;
+    border-radius: 50px;
+  }
+  .link-card-vaporwave > a {
+    border-radius: 50px;
+  }
   h2 {
     margin: 0;
     font-size: 1.25rem;
@@ -44,12 +61,5 @@ const { href, title, body } = Astro.props;
   p {
     margin-top: 0.5rem;
     margin-bottom: 0;
-  }
-  .link-card:is(:hover, :focus-within) {
-    background-position: 0;
-    background-image: var(--accent-gradient);
-  }
-  .link-card:is(:hover, :focus-within) h2 {
-    color: rgb(var(--accent-light));
   }
 </style>
