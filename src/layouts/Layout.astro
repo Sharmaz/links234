@@ -13,6 +13,12 @@ const { title, theme } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <header class="header">
+      <nav class="navbar">
+        <a href="/" class="link text-gradient">Links234</a>
+      </nav>
+      <div class="separator"></div>
+    </header>
     <slot />
   </body>
 </html>
@@ -31,6 +37,9 @@ const { title, theme } = Astro.props;
   html {
     font-family: system-ui, sans-serif;
     background: #13151a;
+  }
+  body {
+    margin: 0;
   }
   code {
     font-family:
@@ -51,5 +60,34 @@ const { title, theme } = Astro.props;
   }
   .main-vaporwave {
     background: #300350;
+  }
+  .header {
+    position: sticky;
+    top: 0;
+  }
+  .navbar {
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    height: 40px;
+  }
+  .link {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .separator {
+    height: 2px;
+    width: 100%;
+    background-image: var(--accent-gradient);
+    background-size: 400%;
+    background-position: 0%;
   }
 </style>
